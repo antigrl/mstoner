@@ -1,0 +1,24 @@
+{
+  "name": "mstoner",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "normalize-css": "normalize.css#~3.0.3"
+  },
+  "authors": [
+    "Kim Walta <kimwalta@gmail.com>"
+  ],
+  "description": "header design",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "/development/vendor",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,498 @@
+// bower:scss
+// endbower
+
+
+@import 'bourbon';
+@import 'neat';
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/base';
+
+@import 'specifics/sprites';
+@import 'specifics/typography';
+@import 'specifics/buttons';
+@import 'specifics/icons';
+@import 'specifics/forms';
+
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/home';
+
+@import 'shame';
+
+
+$base-border-radius: 3px !default;
+$large-screen: em(1140) !default;
+$mid-screen: em(977) !default;
+$base-font-color: #DCF7ED !default;
+$centered-navigation-padding: 1em;
+$centered-navigation-logo-height: 2em;
+$centered-navigation-background: #226E43;
+$centered-navigation-color: $base-font-color;
+$centered-navigation-color-hover: $base-font-color;
+$centered-navigation-height: 50px;
+$centered-navigation-item-padding: 3em;
+$centered-navigation-submenu-padding: 3em;
+$centered-navigation-submenu-width: 24em;
+$centered-navigation-item-nudge: 2.2em;
+$horizontal-bar-mode: $mid-screen;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1170px;
+}
+
+body {
+  background: #fff;
+  font-family: arial, sans-serif;
+}
+
+header {
+  font-size: .75em;
+  a {
+    color: #DCF7ED;
+    text-decoration: none;
+  }
+}
+
+.top-header-wrap {
+  background: $dark-green;
+  .other-sites {
+    display: none;
+    @include media(min-width $horizontal-bar-mode) {
+      display: block;
+      background: url(../images/top-header-bg.png) repeat-x;
+      height: 44px;
+      width: 620px;
+      .top-logo {
+        float: left;
+        display: block;
+        text-indent: -9999px;
+        width: 84.4px;
+        height: 18.3px;
+        background: url(../images/Rush_Logo.svg) no-repeat;
+        margin: 12px 25px 0 65px;
+      }
+      ul {
+        float: left;
+        position: relative;
+        li {
+          display: inline-block;
+          line-height: 44px;
+          padding: 0 10px;
+          &.last:after {
+            content: "";
+            background: url(../images/top-header-end.png) no-repeat;
+            height: 44px;
+            width: 38px;
+            position: absolute;
+            top: 0;
+            right: -35px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mid-header-wrap {
+  display: none;
+
+  @include media(min-width $horizontal-bar-mode) {
+    background: #fff;
+    padding: 15px 0;
+    display: inline-block;
+    width: 100%;
+    a, button {
+      color: $dark-grey;
+      text-decoration: none;
+    }
+    .main-logo {
+      @include span-columns(8);
+      @include omega;
+      text-indent: -9999px;
+      height: 38px;
+      background: url(../images/Rush_University_Logo.svg) no-repeat;
+      color: #393738;
+      margin-top: 20px;
+    }
+
+    .header-shortlinks {
+      font-weight: bold;
+      float: left;
+      margin-top: 15px;
+      .faculty,
+      .search-form {
+        float: left;
+        text-align: center;
+        vertical-align: bottom;
+        margin: 0 30px;
+        svg {
+          margin-bottom: 6px;
+        }
+      }
+      .faculty {
+        margin-left: 0;
+      }
+      .search-form {
+        cursor: pointer;
+        -webkit-transition: border-color .3s cubic-bezier(.165,.84,.44,1);
+        transition: border-color .3s cubic-bezier(.165,.84,.44,1);
+        position: relative;
+
+        input {
+          outline: 0;
+          width: 0;
+          border: 0;
+          transition: width .3s cubic-bezier(.165, .84, .44, 1);
+          line-height: 36px;
+          position: absolute;
+          font-size: 1.7em;
+          font-family: serif;
+          color: #303030;
+          &::-webkit-input-placeholder {
+            color: #303030;
+          }
+        }
+        &:focus {
+          border: 2px solid #e6e6e6;
+          outline: 0;
+        }
+        &.active {
+          overflow: visible;
+          .search {
+            margin-top: -10px;
+            background-color: #efefef;
+            padding: 10px 20px;
+            input {
+              margin-top: -10px;
+              width: 245px;
+              padding: 5px 15px;
+              background: #fff;
+              border: 15px solid #efefef;
+              right: 75px;
+              top: 0;
+            }
+
+          }
+
+        }
+        button {
+          background: 0 0;
+          border: none;
+          cursor: pointer;
+          margin: 0;
+          padding: 0;
+          outline: 0;
+          font-weight: bold;
+          font-size: 1em;
+        }
+      }
+    }
+  }
+  @include media(max-width $large-screen) {
+    .main-logo {
+      @include span-columns(6);
+    }
+  }
+}
+
+.header-person-type {
+  float: right;
+  ul {
+    list-style-type: none;
+    li {
+      line-height: 1.5em;
+    }
+  }
+}
+
+
+.container {
+  @include outer-container(90%);
+}
+
+.content {
+  height: 500px;
+}
+.centered-navigation {
+  background-color: $centered-navigation-background;
+  border-bottom: 1px solid darken($centered-navigation-background, 6%);
+  min-height: $centered-navigation-height;
+  width: 100%;
+  z-index: 9999;
+  font-size: 13px;
+
+  // Mobile view
+
+  .mobile-logo {
+    display: inline;
+    float: left;
+    padding: 1.5em 0;
+  }
+
+  .mobile-logo-mid {
+    display: none;
+    @include media(max-width $large-screen) {
+      display: block;
+      float: left;
+      margin-top: 14px;
+    }
+  }
+
+  .centered-navigation-mobile-menu {
+    color: $centered-navigation-color;
+    display: block;
+    float: right;
+    line-height: $centered-navigation-height;
+    margin: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-left: 1px solid #fff;
+
+    .icon {
+      margin: 20px;
+    }
+    .menu {
+      background: url(../images/Mobile_Hamburger.svg) no-repeat;
+      width: 25px;
+      height: 22px;
+      display: block;
+    }
+    .close {
+      background: url(../images/Mobile_Close.svg) no-repeat;
+      width: 25px;
+      height: 22px;
+      display: block;
+    }
+    @include media (min-width $horizontal-bar-mode) {
+      display: none;
+    }
+
+    &:focus,
+    &:hover {
+      color: $centered-navigation-color-hover;
+    }
+  }
+
+  // Nav menu
+
+  .centered-navigation-wrapper {
+    @include outer-container(100%);
+    @include clearfix;
+    position: relative;
+    z-index: 999;
+    .menu-title {
+      position: absolute;
+      top: 20px;
+      left: 40px;
+      font-family: serif;
+      font-size: 1.5em;
+    }
+    #menu-back {
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 10px;
+    }
+    @include media(min-width $horizontal-bar-mode) {
+      #menu-head {
+        display: none;
+      }
+    }
+  }
+
+  ul.centered-navigation-menu {
+    -webkit-transform-style: preserve-3d; // stop webkit flicker
+    clear: both;
+    display: none;
+    margin: 0 auto;
+    overflow: visible;
+    padding: 0;
+    width: 100%;
+
+    &.show {
+      display: block;
+    }
+
+    @include media (min-width $horizontal-bar-mode) {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  // The nav items
+
+  .nav-link:nth-child(2) {
+    border-top: 1px solid #fff;
+    @include media(min-width $horizontal-bar-mode) {
+      border: 0;
+      padding-left: $centered-navigation-item-nudge;
+    }
+  }
+
+  ul li.nav-link {
+    background: $centered-navigation-background;
+    display: block;
+    line-height: $centered-navigation-height;
+    overflow: hidden;
+    width: 100%;
+    z-index: 9999;
+    border-bottom: 1px solid #3b9162;
+    @include media(min-width $horizontal-bar-mode) {
+      border-bottom: 0;
+    }
+
+    a {
+      color: $centered-navigation-color;
+      display: block;
+      outline: none;
+      text-decoration: none;
+      padding-left: 20px;
+      font-weight: bold;
+      @include media(min-width $horizontal-bar-mode) {
+        font-weight: normal;
+        &.first {
+          margin-left: -40px;
+        }
+      }
+
+      &:focus,
+      &:hover {
+        background: $green;
+      }
+    }
+
+    @include media(min-width $horizontal-bar-mode) {
+      background: transparent;
+      display: inline;
+      line-height: $centered-navigation-height;
+
+      a {
+        display: inline-block;
+        padding: 0 $centered-navigation-item-padding;
+      }
+    }
+    @include media(max-width $large-screen) {
+      a {
+        padding: 0 $centered-navigation-item-padding/3;
+      }
+    }
+  }
+
+  li.logo.nav-link {
+    display: none;
+    line-height: 0;
+
+    @include media(min-width $horizontal-bar-mode) {
+      display: inline;
+    }
+  }
+
+  .logo svg {
+    margin-bottom: -$centered-navigation-logo-height / 3;
+    max-height: $centered-navigation-logo-height;
+    opacity: 0.6;
+  }
+
+  // Sub menus
+
+  li.more.nav-link {
+
+    .more-arrow {
+      background: url(../images/ArrowRight.svg) no-repeat;
+      width: 12.7px;
+      height: 20px;
+      float: right;
+      margin: 15px 25px 0 0;
+      @include media(min-width $horizontal-bar-mode) {
+        display: none;
+      }
+
+    }
+
+    > ul > li:first-child a  {
+      padding-top: 1em;
+    }
+
+  }
+
+  li.more {
+    overflow: visible;
+    padding-right: 0;
+    > a {
+      position: relative;
+    }
+
+
+
+    &:hover > a {
+      @include media(min-width $horizontal-bar-mode) {
+        background: $green;
+      }
+    }
+
+    @include media(min-width $horizontal-bar-mode) {
+      position: relative;
+      &:focus > .submenu,
+      &:hover > .submenu {
+        display: block;
+      }
+    }
+  }
+
+  ul.submenu {
+    display: none;
+    padding-left: 0;
+    border-top: 1px solid #fff;
+    @include media(min-width $horizontal-bar-mode) {
+      border-top: 0;
+      left: 0;
+      position: absolute;
+      top: 2.6em;
+    }
+
+    .submenu {
+      @include media(min-width $horizontal-bar-mode) {
+        left: $centered-navigation-submenu-width - 0.2em;
+        top: 0;
+      }
+    }
+
+    li {
+      display: block;
+      padding-right: 0;
+      border-top: 1px solid #3b9162;
+
+
+      @include media(min-width $horizontal-bar-mode) {
+        border-top: 0;
+        line-height: $centered-navigation-height / 1.1;
+        &:last-child > a {
+          padding-bottom: 2em;
+        }
+      }
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+        width: 100%;
+
+        @include media(min-width $horizontal-bar-mode) {
+          background-color: $green;
+          padding-left: $centered-navigation-submenu-padding;
+          text-align: left;
+          width: $centered-navigation-submenu-width;
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
