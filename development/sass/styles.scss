@@ -4,21 +4,21 @@
 
 @import 'bourbon';
 @import 'neat';
-@import 'base/variables';
-@import 'base/mixins';
-@import 'base/base';
+// @import 'base/variables';
+// @import 'base/mixins';
+// @import 'base/base';
 
-@import 'specifics/sprites';
-@import 'specifics/typography';
-@import 'specifics/buttons';
-@import 'specifics/icons';
-@import 'specifics/forms';
+// @import 'specifics/sprites';
+// @import 'specifics/typography';
+// @import 'specifics/buttons';
+// @import 'specifics/icons';
+// @import 'specifics/forms';
 
-@import 'layout/header';
-@import 'layout/footer';
-@import 'layout/home';
+// @import 'layout/header';
+// @import 'layout/footer';
+// @import 'layout/home';
 
-@import 'shame';
+// @import 'shame';
 
 
 $base-border-radius: 3px !default;
@@ -237,10 +237,13 @@ header {
 
   .mobile-logo-mid {
     display: none;
-    @include media(max-width $large-screen) {
+    @include media(min-width $mid-screen) {
       display: block;
       float: left;
       margin-top: 14px;
+    }
+    @include media(min-width $large-screen) {
+      display: none;
     }
   }
 
